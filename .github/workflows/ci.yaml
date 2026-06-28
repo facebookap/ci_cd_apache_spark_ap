@@ -2,6 +2,7 @@ name: CI
 
 on:
   push:
+<<<<<<< HEAD
     branches: [main, feature-test-session]
   pull_request:
     branches: [main, feature-test-session]
@@ -9,6 +10,15 @@ on:
 jobs:
   black:
     name: Code style (Black)
+=======
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint:
+    name: Lint
+>>>>>>> upstream/main
     runs-on: ubuntu-latest
 
     steps:
@@ -16,6 +26,7 @@ jobs:
 
       - uses: actions/setup-python@v6
         with:
+<<<<<<< HEAD
           python-version: "3.12"
 
       - name: Install Black
@@ -42,10 +53,25 @@ jobs:
 
       - name: Run Ruff lint
         run: ruff check . --exclude "*.ipynb"
+=======
+          python-version: "3.10"
+          cache: pip
+
+      - name: Install dev dependencies
+        run: pip install ruff 
+
+      - name: ruff check
+        run: ruff check src/ tests/
+
+>>>>>>> upstream/main
 
   test:
     name: Tests (Python ${{ matrix.python-version }})
     runs-on: ubuntu-latest
+<<<<<<< HEAD
+=======
+    needs: lint
+>>>>>>> upstream/main
 
     strategy:
       matrix:
@@ -70,6 +96,7 @@ jobs:
           pip install -r requirements.txt
           pip install -e .
           pip install pytest-cov
+<<<<<<< HEAD
           
       - name: Add src to PYTHONPATH
         run: echo "PYTHONPATH=$PWD/src" >> $GITHUB_ENV
@@ -80,3 +107,25 @@ jobs:
             --cov=src/us_accidents_etl \
             --cov-report=term-missing \
             --cov-report=xml
+=======
+
+      - name: Run tests with coverage
+        run: >
+          pytest tests/ -v
+          --cov=src/us_accidents_etl
+          --cov-report=term-missing
+          --cov-report=xml
+      
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v6
+        with:
+          name: coverage-xml-${{ matrix.python-version }}
+          path: coverage.xml
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: coverage.xml
+          fail_ci_if_error: false
+>>>>>>> upstream/main

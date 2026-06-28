@@ -38,5 +38,5 @@ class Settings(BaseSettings):
     etl: ETLConfig
 
 
-def get_settings() -> Settings:
-    return Settings()
+def get_settings(**kwargs) -> Settings:
+    return Settings(**kwargs)

@@ -2,6 +2,7 @@
 name = "us-accidents-etl"
 version = "0.1.0"
 requires-python = ">=3.10"
+<<<<<<< HEAD
 description = "US Accidents ETL project"
 authors = [
     { name = "Adam" }
@@ -21,6 +22,8 @@ packages = ["us_accidents_etl"]
 # Jeśli chcesz, mogę zrobić automatyczne wykrywanie pakietów:
 # [tool.setuptools.packages.find]
 # where = ["src"]
+=======
+>>>>>>> upstream/main
 
 [tool.pytest.ini_options]
 pythonpath = ["src"]
@@ -32,6 +35,7 @@ target-version = "py310"
 
 [tool.ruff.lint]
 select = [
+<<<<<<< HEAD
    "E",
    "F",
    "I",
@@ -43,3 +47,16 @@ ignore = [
 
 [tool.ruff.lint.per-file-ignores]
 "tests/*" = ["S101"]
+=======
+   "E",   # pycodestyle — styl
+   "F",   # pyflakes — błędy logiczne (unused imports itp.)
+   "I",   # isort — kolejność importów
+   "UP",  # pyupgrade — nowoczesna składnia (np. list[str] zamiast List[str])
+]
+ignore = [
+   "E501",  # długie linie obsługuje formatter
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S101"]  # assert jest OK w testach
+>>>>>>> upstream/main
