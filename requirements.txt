@@ -8,3 +8,6 @@ pydantic>=2.7
 # dev 
 kagglehub==0.4.3
 kagglesdk>=0.1.14,<1.0
+pytest>=8.0
+pytest-mock>=3.14
+pytest-cov>=5.0
