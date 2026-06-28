@@ -11,10 +11,7 @@ def write_dataset(df: DataFrame, output_path: str) -> None:
     else:
         os.makedirs(output_path, exist_ok=True)
         df.write.mode("overwrite").parquet(output_path)
-<<<<<<< HEAD
         # df.toPandas().to_parquet(os.path.join(output_path, "data.parquet"), index=False)
-=======
->>>>>>> upstream/main
 
 
 def write_filtered(df: DataFrame, cfg: ETLConfig) -> None:
