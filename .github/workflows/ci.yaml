@@ -25,7 +25,6 @@ jobs:
       - name: ruff check
         run: ruff check src/ tests/
 
-
   test:
     name: Tests (Python ${{ matrix.python-version }})
     runs-on: ubuntu-latest
@@ -74,4 +73,3 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: coverage.xml
           fail_ci_if_error: false
-          
