@@ -7,6 +7,23 @@ on:
     branches: [main, feature-test-session]
 
 jobs:
+  black:
+    name: Code style (Black)
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.10"
+
+      - name: Install Black
+        run: pip install black
+
+      - name: Run Black check
+        run: black --check .
+
   test:
     name: Tests (Python ${{ matrix.python-version }})
     runs-on: ubuntu-latest
