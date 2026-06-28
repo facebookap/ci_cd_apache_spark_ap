@@ -20,10 +20,11 @@ jobs:
           cache: pip
 
       - name: Install dev dependencies
-        run: pip install ruff
+        run: pip install ruff 
 
       - name: ruff check
         run: ruff check src/ tests/
+
 
   test:
     name: Tests (Python ${{ matrix.python-version }})
@@ -60,7 +61,7 @@ jobs:
           --cov=src/us_accidents_etl
           --cov-report=term-missing
           --cov-report=xml
-
+      
       - name: Upload coverage report
         uses: actions/upload-artifact@v6
         with:
@@ -73,3 +74,4 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: coverage.xml
           fail_ci_if_error: false
+          
