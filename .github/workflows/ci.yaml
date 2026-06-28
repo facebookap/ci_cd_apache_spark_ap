@@ -2,15 +2,6 @@ name: CI
 
 on:
   push:
-<<<<<<< HEAD
-    branches: [main, feature-test-session]
-  pull_request:
-    branches: [main, feature-test-session]
-
-jobs:
-  black:
-    name: Code style (Black)
-=======
     branches: [main]
   pull_request:
     branches: [main]
@@ -18,7 +9,6 @@ jobs:
 jobs:
   lint:
     name: Lint
->>>>>>> upstream/main
     runs-on: ubuntu-latest
 
     steps:
@@ -26,7 +16,6 @@ jobs:
 
       - uses: actions/setup-python@v6
         with:
-<<<<<<< HEAD
           python-version: "3.12"
 
       - name: Install Black
@@ -63,15 +52,10 @@ jobs:
       - name: ruff check
         run: ruff check src/ tests/
 
->>>>>>> upstream/main
-
   test:
     name: Tests (Python ${{ matrix.python-version }})
     runs-on: ubuntu-latest
-<<<<<<< HEAD
-=======
     needs: lint
->>>>>>> upstream/main
 
     strategy:
       matrix:
@@ -96,8 +80,6 @@ jobs:
           pip install -r requirements.txt
           pip install -e .
           pip install pytest-cov
-<<<<<<< HEAD
-          
       - name: Add src to PYTHONPATH
         run: echo "PYTHONPATH=$PWD/src" >> $GITHUB_ENV
 
@@ -107,8 +89,6 @@ jobs:
             --cov=src/us_accidents_etl \
             --cov-report=term-missing \
             --cov-report=xml
-=======
-
       - name: Run tests with coverage
         run: >
           pytest tests/ -v
@@ -128,4 +108,4 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: coverage.xml
           fail_ci_if_error: false
->>>>>>> upstream/main
+
