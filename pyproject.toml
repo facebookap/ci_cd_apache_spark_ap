@@ -1,0 +1,45 @@
+[project]
+name = "us-accidents-etl"
+version = "0.1.0"
+requires-python = ">=3.10"
+description = "US Accidents ETL project"
+authors = [
+    { name = "Adam" }
+]
+
+# Jeśli masz requirements.txt, nie musisz tu dodawać dependencies.
+# Możesz dodać później, jeśli chcesz.
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+packages = ["us_accidents_etl"]
+
+# Jeśli chcesz, mogę zrobić automatyczne wykrywanie pakietów:
+# [tool.setuptools.packages.find]
+# where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = [
+   "E",
+   "F",
+   "I",
+   "UP",
+]
+ignore = [
+   "E501",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S101"]
