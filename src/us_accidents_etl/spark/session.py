@@ -1,6 +1,6 @@
 from pyspark.sql import SparkSession
 
-from src.us_accidents_etl.config.settings import SparkConfig
+from us_accidents_etl.config.settings import SparkConfig
 
 
 def create_spark_session(spark_cfg: SparkConfig) -> SparkSession:
